@@ -142,6 +142,15 @@ AskAgayn:
 // ═══════════════════════════════ Домашнее задание ═══════════════════════════════
 
 // 1 ЗАДАЧА //
+void NumberSum(int a, int b)
+{
+    int result = a;
+    for (int i = 1; i < b; i++)
+    {
+        result = result * result;
+    }
+    return (result);
+}
 
 // 2 ЗАДАЧА //
 
@@ -199,6 +208,18 @@ restart:
         switch (choice)
         {
             case 1:
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Введите число [a]...");
+                int a -GetData();
+                Console.WriteLine("Введите число [b]...");
+                int b -GetData();
+                Console.WriteLine("\n" +
+                "  ╔═══════════════════════════════════╗\n" +
+                $"      ВВЕДЕННОЕ ЧИСЛО {a}\n" +
+                $"      В {b}-Й СТЕПЕНИ, РАВНО {NumberSum(a, b)} \n" +
+                "  ╚═══════════════════════════════════╝\n");
                 pause();
                 goto restart;
             case 2:
