@@ -82,9 +82,11 @@ void ErrorCatch()
 {
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("ОШИБКА!\n" +
-    "Неверный ввод данных.\n" +
-    "Программа будет перезапущена.");
+    Console.WriteLine("" +
+    "  ╔═ О Ш И Б К А  В В О Д А ════════════════════════════╗\n" +
+    "  ║  Возможно вы ввели не верные данные.                ║\n" +
+    "  ║  Программа будет перезапущена...                    ║\n" +
+    "  ╚═════════════════════════════════════════════════════╝\n");
     Console.ForegroundColor = ConsoleColor.White;
     pause();
 }
@@ -93,7 +95,10 @@ void ErrorCatch()
 void pause()
 {
     Console.ForegroundColor = ConsoleColor.Cyan;
-    Console.WriteLine("Для продолжения нажмите любую клавишу...");
+    Console.WriteLine("" +
+    "  ╔═════════════════════════════════════════════════════╗\n" +
+    "  ║  ЧТОБЫ ПРОДОЛЖИТЬ НАЖМИТЕ ЛЮБУЮ КЛАВИШУ...          ║\n" +
+    "  ╚═════════════════════════════════════════════════════╝\n");
     ConsoleKeyInfo key;
     key = Console.ReadKey();
     try
@@ -109,11 +114,11 @@ void pause()
 // ВЫХОД ИЗ ПРОГРАММЫ
 void ext()
 {
-    Console.Clear();
 AskAgayn:
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("\n" +
-    "  ╔═════════════════════════════════════════════════════╗\n" +
+    Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine("" +
+    "  ╔═ В Ы Х О Д   И З   П Р О Г Р А М М Ы ═══════════════╗\n" +
     "  ║      Вы уверены что хотите закрыть программу?       ║\n" +
     "  ║              [ENTER] Да     [ESC] Нет               ║\n" +
     "  ╚═════════════════════════════════════════════════════╝\n");
@@ -123,10 +128,18 @@ AskAgayn:
     if (key.Key != ConsoleKey.Enter && key.Key != ConsoleKey.Escape)
     {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("ОШИБКА!\n" +
-        "Вы нажали не ту клавишу." +
-        "Нажмите [ENTER] или [ESC].");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("" +
+        "  ╔═ О Ш И Б К А  В В О Д А ════════════════════════════╗\n" +
+        "  ║  Вам нужно нажать [ENTER] или [ESC].                ║\n" +
+        "  ╚═════════════════════════════════════════════════════╝\n");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("" +
+        "  ╔═════════════════════════════════════════════════════╗\n" +
+        "  ║  ЧТОБЫ ПРОДОЛЖИТЬ НАЖМИТЕ ЛЮБУЮ КЛАВИШУ...          ║\n" +
+        "  ╚═════════════════════════════════════════════════════╝\n");
+        ConsoleKeyInfo key1;
+        key1 = Console.ReadKey();
         Console.ForegroundColor = ConsoleColor.White;
         goto AskAgayn;
     }
@@ -168,9 +181,9 @@ int number(int num)
 }
 
 // 3 ЗАДАЧА //
-int [] Array(int n)
+int[] Array(int n)
 {
-    int [] ar = new int [n];
+    int[] ar = new int[n];
     for (int i = 0; i < n; i++)
     {
         Console.WriteLine($"Введите {i + 1}-е значение массива...");
@@ -182,20 +195,28 @@ int [] Array(int n)
 // 4 ЗАДАЧА //
 int numc(double num)
 {
-    if (num < 0) num - num + num * 2;
     int result = 0;
-    int num1 = num % 10;
-    int num2 = num - num2;
-    while (num1 > 0)
+    while (num % 1 > 0)
     {
-        num1 = num1 / 10;
+        num = num * 10;
+    }
+    while (num >= 1)
+    {
+        num = num / 10;
         result++;
     }
-        while (num2 > 0)
-    {
-        num2 = num2 / 10;
-        result++;
-    }
+    return (result);
+}
+
+string word(int w)
+{
+    string result = "ЦИФРА";
+    int w1 = w % 10;
+    if (w < 0) w = w + w * 2;
+    if (w1 == 1) result = "ЦИФРУ";
+    else if (w1 > 1 && w1 < 5) result = "ЦИФРЫ";
+    else if (w > 4 && w < 20) result = "ЦИФР";
+    else result = "ЦИФР";
     return (result);
 }
 
@@ -275,9 +296,9 @@ restart:
                 int aa = GetData();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\n" +
-                "  ╔══════════════════════════════════════╗\n" +
+                "  ╔════════════════════════════════════════════════╗\n" +
                 $"      СУММА ВСЕХ ЦИФР ЧИСЛА {aa} РАВНА {number(aa)} \n" +
-                "  ╚══════════════════════════════════════╝\n");
+                "  ╚════════════════════════════════════════════════╝\n");
                 pause();
                 goto restart;
             case 3:
@@ -308,12 +329,14 @@ restart:
                 Console.WriteLine("Задача 26 HARD - необязательная: Напишите программу, которая принимает на вход число (целое или вещественное) и выдаёт количество цифр в числе.");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nВведите любоае число...");
-                double nn = Convert.ToDouble(Console.ReadLine());
+                string numdouble = Convert.ToString(Console.ReadLine());
+                double nn = Convert.ToDouble(numdouble.Replace('.', ','));
                 Console.ForegroundColor = ConsoleColor.Green;
+                int numbers = numc(nn);
                 Console.WriteLine("\n" +
-                "  ╔══════════════════════════════════════╗\n" +
-                $"      ЧИСЛО {nn} СОДЕРЖИТ {numc(nn)} ЦИФР\n" +
-                "  ╚══════════════════════════════════════╝\n");
+                "  ╔═════════════════════════════════════════════════════╗\n" +
+                $"      ЧИСЛО {nn} СОДЕРЖИТ {numbers} {word(numbers)}\n" +
+                "  ╚═════════════════════════════════════════════════════╝\n");
                 pause();
                 goto restart;
             case 5:
