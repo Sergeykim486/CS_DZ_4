@@ -180,6 +180,24 @@ int [] Array(int n)
 }
 
 // 4 ЗАДАЧА //
+int numc(double num)
+{
+    if (num < 0) num - num + num * 2;
+    int result = 0;
+    int num1 = num % 10;
+    int num2 = num - num2;
+    while (num1 > 0)
+    {
+        num1 = num1 / 10;
+        result++;
+    }
+        while (num2 > 0)
+    {
+        num2 = num2 / 10;
+        result++;
+    }
+    return (result);
+}
 
 // ═════════════════════════════════════════════════════════════════════════════════════════════
 
@@ -285,6 +303,17 @@ restart:
                 pause();
                 goto restart;
             case 4:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Задача 26 HARD - необязательная: Напишите программу, которая принимает на вход число (целое или вещественное) и выдаёт количество цифр в числе.");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nВведите любоае число...");
+                double nn = Convert.ToDouble(Console.ReadLine());
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" +
+                "  ╔══════════════════════════════════════╗\n" +
+                $"      ЧИСЛО {nn} СОДЕРЖИТ {numc(nn)} ЦИФР\n" +
+                "  ╚══════════════════════════════════════╝\n");
                 pause();
                 goto restart;
             case 5:
