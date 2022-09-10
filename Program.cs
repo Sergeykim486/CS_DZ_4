@@ -58,7 +58,7 @@ void menu()
         }
         i++;
     }
-    Console.ForegroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.DarkCyan;
     Console.WriteLine("\n" +
     "╔════════════════════════════════════════════════╤═══════════════╗\n" +
     "║  Используйте [стрелки] для навигации.          │   ▲ : Вверх   ║\n" +
@@ -70,7 +70,8 @@ void menu()
 // ВВОД ЧИСЛА
 int GetData()
 {
-    Console.Write("\n_______________________________________________\n" +
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Write("_______________________________________________\n" +
     "Введите целое число... ");
     int result1 = Convert.ToInt32(Console.ReadLine());
     return result1;
@@ -91,6 +92,7 @@ void ErrorCatch()
 // ПАУЗА ДЛЯ ЧТЕНИЯ ВЫВОДИМЫХ ДАННЫХ
 void pause()
 {
+    Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine("Для продолжения нажмите любую клавишу...");
     ConsoleKeyInfo key;
     key = Console.ReadKey();
@@ -142,19 +144,40 @@ AskAgayn:
 // ═══════════════════════════════ Домашнее задание ═══════════════════════════════
 
 // 1 ЗАДАЧА //
-void NumberSum(int a, int b)
+int NumberSum(int a, int b)
 {
     int result = a;
     for (int i = 1; i < b; i++)
     {
-        result = result * result;
+        result = result * a;
     }
     return (result);
 }
 
 // 2 ЗАДАЧА //
+int number(int num)
+{
+    if (num < 0) num = num + num * 2;
+    int sum = 0;
+    while (num > 0)
+    {
+        sum = sum + num % 10;
+        num = num / 10;
+    }
+    return (sum);
+}
 
 // 3 ЗАДАЧА //
+int [] Array(int n)
+{
+    int [] ar = new int [n];
+    for (int i = 0; i < n; i++)
+    {
+        Console.WriteLine($"Введите {i + 1}-е значение массива...");
+        ar[i] = GetData();
+    }
+    return (ar);
+}
 
 // 4 ЗАДАЧА //
 
@@ -208,13 +231,16 @@ restart:
         switch (choice)
         {
             case 1:
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("Введите число [a]...");
-                int a -GetData();
-                Console.WriteLine("Введите число [b]...");
-                int b -GetData();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nВведите число [a]...");
+                int a = GetData();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nВведите число [b]...");
+                int b = GetData();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\n" +
                 "  ╔═══════════════════════════════════╗\n" +
                 $"      ВВЕДЕННОЕ ЧИСЛО {a}\n" +
@@ -223,9 +249,39 @@ restart:
                 pause();
                 goto restart;
             case 2:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nВведите число...");
+                int aa = GetData();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" +
+                "  ╔══════════════════════════════════════╗\n" +
+                $"      СУММА ВСЕХ ЦИФР ЧИСЛА {aa} РАВНА {number(aa)} \n" +
+                "  ╚══════════════════════════════════════╝\n");
                 pause();
                 goto restart;
             case 3:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Задача 29: Напишите программу, которая задаёт массив из N элементов и выводит их на экран. N - вводится с клавиатуры. Элементы тоже вводятся с клавиатуры.");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nВведите число...");
+                int ArL = GetData();
+                int[] array1 = Array(ArL);
+                for (int i = 0; i < ArL; i++)
+                {
+                    if (i == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+                        Console.Write($"    {array1[i]}, ");
+                    }
+                    else if (i == ArL - 1) Console.Write($"{array1[i]}.\n");
+                    else Console.Write($"{array1[i]}, ");
+                }
+                Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
                 pause();
                 goto restart;
             case 4:
